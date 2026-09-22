@@ -1,0 +1,390 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --color-abyss: #0a1122;
+  --color-panel: #0f1a30;
+  --color-panel-soft: #13203a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgb(34 211 238 / 0.25);
+}
+
+:focus-visible {
+  outline: 2px solid #0284c7;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.dark :focus-visible {
+  outline-color: #22d3ee;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Article typography ---------- */
+
+.article-body {
+  font-family: var(--font-serif);
+  font-size: 1.16rem;
+  line-height: 1.85;
+  overflow-wrap: break-word;
+}
+
+.article-body > * + * {
+  margin-top: 1.5em;
+}
+
+/* Editorial drop cap on the opening paragraph */
+.article-body > p:first-of-type::first-letter {
+  font-weight: 600;
+  font-size: 3.1em;
+  float: left;
+  line-height: 0.85;
+  padding-right: 0.14em;
+  padding-top: 0.05em;
+  color: #0f172a;
+}
+
+.dark .article-body > p:first-of-type::first-letter {
+  color: #f1f5f9;
+}
+
+.article-body h2,
+.article-body h3 {
+  font-family: var(--font-serif);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+  scroll-margin-top: 6rem;
+  color: #0f172a;
+}
+
+.dark .article-body h2,
+.dark .article-body h3 {
+  color: #f1f5f9;
+}
+
+.article-body h2 {
+  font-size: 1.5rem;
+  margin-top: 2.5em;
+  padding-top: 0.25em;
+  border-top: 1px solid #e2e8f0;
+}
+
+.dark .article-body h2 {
+  border-top-color: rgb(148 163 184 / 0.16);
+}
+
+.article-body h3 {
+  font-size: 1.2rem;
+  margin-top: 2em;
+}
+
+.article-body h4 {
+  font-family: var(--font-serif);
+  font-size: 1.08rem;
+  font-weight: 700;
+  margin-top: 1.8em;
+  scroll-margin-top: 6rem;
+  color: #0f172a;
+}
+
+.dark .article-body h4 {
+  color: #f1f5f9;
+}
+
+.article-body p {
+  color: #334155;
+}
+
+.dark .article-body p {
+  color: #cbd5e1;
+}
+
+.article-body a {
+  color: #0369a1;
+  text-decoration: underline;
+  text-decoration-color: rgb(34 211 238 / 0.6);
+  text-underline-offset: 3px;
+  font-weight: 500;
+}
+
+.dark .article-body a {
+  color: #67e8f9;
+}
+
+.article-body a:hover {
+  text-decoration-color: currentColor;
+}
+
+.article-body strong {
+  color: #0f172a;
+  font-weight: 650;
+}
+
+.dark .article-body strong {
+  color: #f8fafc;
+}
+
+.article-body ul,
+.article-body ol {
+  padding-left: 1.5rem;
+  color: #334155;
+}
+
+.dark .article-body ul,
+.dark .article-body ol {
+  color: #cbd5e1;
+}
+
+.article-body ul {
+  list-style: disc;
+}
+
+.article-body ol {
+  list-style: decimal;
+}
+
+.article-body li + li {
+  margin-top: 0.5em;
+}
+
+.article-body li::marker {
+  color: #0284c7;
+}
+
+.dark .article-body li::marker {
+  color: #22d3ee;
+}
+
+.article-body blockquote {
+  border-left: 2px solid #22d3ee;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  font-style: italic;
+  color: #475569;
+  background: rgb(34 211 238 / 0.06);
+  border-radius: 0 8px 8px 0;
+}
+
+.dark .article-body blockquote {
+  color: #94a3b8;
+  background: rgb(34 211 238 / 0.07);
+}
+
+.article-body blockquote p {
+  margin: 0.5em 0;
+}
+
+.article-body hr {
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+  margin: 2.5em auto;
+  max-width: 12rem;
+}
+
+.dark .article-body hr {
+  border-top-color: rgb(148 163 184 / 0.2);
+}
+
+.article-body code:not(pre code) {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  padding: 0.15em 0.4em;
+  border-radius: 6px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #0c4a6e;
+  white-space: nowrap;
+}
+
+.dark .article-body code:not(pre code) {
+  background: rgb(34 211 238 / 0.08);
+  border-color: rgb(148 163 184 / 0.18);
+  color: #a5f3fc;
+}
+
+.article-body img {
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  max-width: 100%;
+  height: auto;
+}
+
+.dark .article-body img {
+  border-color: rgb(148 163 184 / 0.18);
+}
+
+.article-body table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.article-body thead th {
+  text-align: left;
+  font-weight: 650;
+  padding: 0.65rem 1rem;
+  border-bottom: 2px solid #cbd5e1;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+.dark .article-body thead th {
+  border-bottom-color: rgb(148 163 184 / 0.3);
+  color: #f1f5f9;
+}
+
+.article-body tbody td {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #334155;
+  vertical-align: top;
+}
+
+.dark .article-body tbody td {
+  border-bottom-color: rgb(148 163 184 / 0.14);
+  color: #cbd5e1;
+}
+
+/* ---------- Code blocks (rehype-pretty-code / shiki) ---------- */
+
+[data-rehype-pretty-code-figure] {
+  margin: 2em 0;
+}
+
+[data-rehype-pretty-code-figure] pre {
+  position: relative;
+  overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  padding: 1rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+.dark [data-rehype-pretty-code-figure] pre {
+  background: #0b1428;
+  border-color: rgb(148 163 184 / 0.16);
+}
+
+[data-rehype-pretty-code-figure] code {
+  display: grid;
+  min-width: max-content;
+  padding: 0;
+  background: transparent !important;
+}
+
+[data-rehype-pretty-code-figure] [data-line] {
+  padding: 0 1.25rem;
+  border-left: 2px solid transparent;
+}
+
+[data-rehype-pretty-code-figure] [data-highlighted-line] {
+  background: rgb(2 132 199 / 0.1);
+  border-left-color: #0284c7;
+}
+
+.dark [data-rehype-pretty-code-figure] [data-highlighted-line] {
+  background: rgb(34 211 238 / 0.1);
+  border-left-color: #22d3ee;
+}
+
+/* Shiki emits one tree with light/dark CSS vars — pick per active theme */
+[data-rehype-pretty-code-figure] code,
+[data-rehype-pretty-code-figure] code span {
+  color: var(--shiki-light);
+}
+
+.dark [data-rehype-pretty-code-figure] code,
+.dark [data-rehype-pretty-code-figure] code span {
+  color: var(--shiki-dark);
+}
+
+[data-rehype-pretty-code-title] {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-bottom: 0;
+  border-radius: 10px 10px 0 0;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.dark [data-rehype-pretty-code-title] {
+  background: #0f1a30;
+  border-color: rgb(148 163 184 / 0.16);
+  color: #94a3b8;
+}
+
+[data-rehype-pretty-code-title] + pre {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.copy-code-btn {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #475569;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease, border-color 0.15s ease;
+}
+
+.dark .copy-code-btn {
+  background: #13203a;
+  border-color: rgb(148 163 184 / 0.25);
+  color: #cbd5e1;
+}
+
+[data-rehype-pretty-code-figure] pre:hover .copy-code-btn,
+.copy-code-btn:focus-visible {
+  opacity: 1;
+}
+
+.copy-code-btn:hover {
+  border-color: #22d3ee;
+}
+
+@media (hover: none) {
+  .copy-code-btn {
+    opacity: 1;
+  }
+}
