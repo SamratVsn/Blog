@@ -16,6 +16,7 @@ export type ArticleMeta = {
   category?: string;
   readingTime: string;
   words: number;
+  image?: string;
   mediumUrl?: string;
   canonicalUrl?: string;
   published: boolean;

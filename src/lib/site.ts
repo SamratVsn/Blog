@@ -2,7 +2,7 @@ export const site = {
   name: "Samrat Parajuli",
   handle: "SamratVsn",
   role: "Android Developer · Student · Builder",
-  tagline: "Notes from the journey of building software.",
+  tagline: "Blogs from the journey of building software.",
   description:
     "I write about Android development, Kotlin, software architecture, things I'm learning, and the lessons that come from actually building.",
   url: "https://blog.samratparajuli0.com.np",
@@ -32,7 +32,7 @@ export const topics: Topic[] = [
   {
     slug: "android",
     label: "Android",
-    description: "Native Android development: Jetpack Compose, architecture, and platform notes.",
+    description: "Native Android development: Jetpack Compose, architecture, and hands-on blogs.",
   },
   {
     slug: "kotlin",
@@ -52,7 +52,7 @@ export const topics: Topic[] = [
   {
     slug: "events",
     label: "Events",
-    description: "Hackathons, meetups, workshops, and community notes.",
+    description: "Hackathons, meetups, workshops, and community blogs.",
   },
 ];
 

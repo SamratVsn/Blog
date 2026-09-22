@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CodeEnhancer } from "@/components/CodeEnhancer";
+import { Eyebrow } from "@/components/Eyebrow";
 import { ReadingProgress } from "@/components/ReadingProgress";
 import { RelatedArticles } from "@/components/RelatedArticles";
 import { ShareButtons } from "@/components/ShareButtons";
@@ -78,40 +79,34 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       <div className="grid gap-12 py-10 sm:py-14 lg:grid-cols-[minmax(0,1fr)_240px]">
         <article className="min-w-0 max-w-[68ch]">
           <header>
-            <p className="font-mono text-xs tracking-widest uppercase">
-              <Link href="/articles" className="text-slate-400 hover:text-sky-700 hover:underline dark:text-slate-500 dark:hover:text-cyan-300">
-                Index
-              </Link>
-              <span aria-hidden="true" className="text-slate-300 dark:text-slate-600"> / </span>
-              <span className="text-sky-800 dark:text-cyan-300">{article.category ?? "Note"}</span>
-            </p>
-            <h1 className="mt-4 font-serif text-4xl leading-[1.12] font-semibold tracking-tight text-balance text-slate-900 sm:text-[2.9rem] dark:text-slate-50">
+            <Eyebrow>{article.category ?? "Blog"}</Eyebrow>
+            <h1 className="mt-4 text-[2.1rem] leading-[1.05] font-bold tracking-[-0.03em] text-balance text-slate-900 sm:text-5xl dark:text-white">
               {article.title}
             </h1>
             {article.description && (
-              <p className="mt-5 font-serif text-xl leading-relaxed text-slate-500 italic dark:text-slate-400">
+              <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-slate-500 dark:text-slate-400">
                 {article.description}
               </p>
             )}
-            <div className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2 border-y border-slate-200/70 py-4 font-mono text-xs text-slate-400 dark:border-slate-800/60 dark:text-slate-500">
+            <div className="mt-6 flex flex-wrap items-center gap-x-2.5 gap-y-2 border-y border-slate-200/70 py-4 font-mono text-[11px] text-slate-400 dark:border-white/[0.06] dark:text-slate-500">
               <span>
                 By <span className="text-slate-600 dark:text-slate-300">{site.name}</span>
               </span>
-              <span aria-hidden="true">·</span>
+              <span aria-hidden="true" className="h-1 w-1 rounded-full bg-slate-300 dark:bg-slate-700" />
               <time dateTime={article.date}>{formatDisplayDate(article.date)}</time>
               {article.updated && (
                 <>
-                  <span aria-hidden="true">·</span>
-                  <time dateTime={article.updated}>rev. {formatDisplayDate(article.updated)}</time>
+                  <span aria-hidden="true" className="h-1 w-1 rounded-full bg-slate-300 dark:bg-slate-700" />
+                  <time dateTime={article.updated}>Updated {formatDisplayDate(article.updated)}</time>
                 </>
               )}
-              <span aria-hidden="true">·</span>
+              <span aria-hidden="true" className="h-1 w-1 rounded-full bg-slate-300 dark:bg-slate-700" />
               <span>{article.readingTime}</span>
-              <span aria-hidden="true">·</span>
+              <span aria-hidden="true" className="h-1 w-1 rounded-full bg-slate-300 dark:bg-slate-700" />
               <span>≈ {article.words.toLocaleString("en-US")} words</span>
               {article.mediumUrl && (
                 <>
-                  <span aria-hidden="true">·</span>
+                  <span aria-hidden="true" className="h-1 w-1 rounded-full bg-slate-300 dark:bg-slate-700" />
                   <a
                     href={article.mediumUrl}
                     target="_blank"
@@ -125,40 +120,37 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             </div>
           </header>
 
-          <div id="article-body" className="article-body mt-9" dangerouslySetInnerHTML={{ __html: article.html }} />
+          <div id="article-body" className="article-body mt-8" dangerouslySetInnerHTML={{ __html: article.html }} />
           <CodeEnhancer />
 
           <footer>
             {article.tags.length > 0 && (
-              <p className="mt-12 flex flex-wrap items-center gap-1.5" aria-label="Filed under">
-                <span className="mr-1 font-mono text-xs tracking-widest text-slate-400 uppercase dark:text-slate-500">
-                  Filed under
-                </span>
+              <div className="mt-10 flex flex-wrap items-center gap-1.5" aria-label="Tags">
                 {article.tags.map((tag) => (
                   <Tag key={tag} label={tag} />
                 ))}
-              </p>
+              </div>
             )}
 
-            <div className="mt-8 border-t border-slate-200/70 pt-6 dark:border-slate-800/60">
+            <div className="mt-8 border-t border-slate-200/70 pt-6 dark:border-white/[0.06]">
               <ShareButtons title={article.title} url={`${site.url}${url}`} />
             </div>
 
-            <div className="mt-8 flex gap-4 rounded-xl border border-slate-200 bg-slate-50/60 p-5 sm:p-6 dark:border-slate-700/50 dark:bg-panel/60">
+            <div className="mt-8 flex gap-4 rounded-xl border border-slate-200 bg-slate-50/60 p-5 dark:border-white/[0.05] dark:bg-panel/60">
               <span
                 aria-hidden="true"
-                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sky-800 font-serif text-lg font-bold text-white dark:bg-cyan-400 dark:text-slate-950"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#3b82f6] text-sm font-bold text-[#020617]"
               >
                 S
               </span>
               <div>
-                <p className="font-serif text-lg font-semibold text-slate-900 dark:text-slate-50">
+                <p className="text-[15px] font-semibold text-slate-900 dark:text-white">
                   {site.name}
                 </p>
-                <p className="mt-1 text-sm leading-relaxed">
+                <p className="mt-1 text-[13.5px] leading-relaxed text-slate-500 dark:text-slate-400">
                   Student and Android developer from Nepal, building native apps with Kotlin and
-                  Jetpack Compose. This journal is where I document what I learn along the way.{" "}
-                  <Link href="/about" className="font-medium text-sky-800 hover:underline dark:text-cyan-300">
+                  Jetpack Compose.{" "}
+                  <Link href="/about" className="font-medium text-[#3b82f6] hover:underline">
                     More about me →
                   </Link>
                 </p>
@@ -167,14 +159,14 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
             <RelatedArticles articles={related} />
 
-            <nav aria-label="Chronological" className="mt-10 grid gap-3 border-t border-slate-200/70 pt-6 sm:grid-cols-2 dark:border-slate-800/60">
+            <nav aria-label="Chronological" className="mt-10 grid gap-4 border-t border-slate-200/70 pt-6 sm:grid-cols-2 dark:border-white/[0.06]">
               <div>
                 {older && (
                   <Link href={`/articles/${older.slug}`} className="group block">
-                    <span className="font-mono text-xs tracking-widest text-slate-400 uppercase dark:text-slate-500">
+                    <span className="font-mono text-[11px] tracking-widest text-slate-400 uppercase dark:text-slate-500">
                       ← Older
                     </span>
-                    <span className="mt-1 block font-serif text-lg leading-snug font-medium text-slate-800 group-hover:text-sky-800 dark:text-slate-100 dark:group-hover:text-cyan-300">
+                    <span className="mt-1.5 block text-[15px] leading-snug font-medium text-slate-700 group-hover:text-[#3b82f6] dark:text-slate-200">
                       {older.title}
                     </span>
                   </Link>
@@ -183,10 +175,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               <div className="sm:text-right">
                 {newer && (
                   <Link href={`/articles/${newer.slug}`} className="group block">
-                    <span className="font-mono text-xs tracking-widest text-slate-400 uppercase dark:text-slate-500">
+                    <span className="font-mono text-[11px] tracking-widest text-slate-400 uppercase dark:text-slate-500">
                       Newer →
                     </span>
-                    <span className="mt-1 block font-serif text-lg leading-snug font-medium text-slate-800 group-hover:text-sky-800 dark:text-slate-100 dark:group-hover:text-cyan-300">
+                    <span className="mt-1.5 block text-[15px] leading-snug font-medium text-slate-700 group-hover:text-[#3b82f6] dark:text-slate-200">
                       {newer.title}
                     </span>
                   </Link>
@@ -195,8 +187,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             </nav>
 
             <p className="mt-8 text-sm">
-              <Link href="/articles" className="font-medium text-sky-800 hover:underline dark:text-cyan-300">
-                ← Back to the full index
+              <Link href="/articles" className="font-medium text-[#3b82f6] hover:underline">
+                ← Back to all blogs
               </Link>
             </p>
           </footer>
@@ -211,14 +203,14 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
       {/* Mobile TOC */}
       {article.toc.length > 0 && (
-        <details className="mx-auto mb-12 max-w-[68ch] rounded-xl border border-slate-200 p-5 lg:hidden dark:border-slate-700/50">
-          <summary className="cursor-pointer font-serif text-lg font-medium text-slate-800 dark:text-slate-100">
-            In this entry
+        <details className="mx-auto mb-12 max-w-[68ch] rounded-xl border border-slate-200 p-5 lg:hidden dark:border-white/[0.06] dark:bg-panel/40">
+          <summary className="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200">
+            On this page
           </summary>
           <ul className="mt-3 space-y-2 text-sm">
             {article.toc.map((entry) => (
               <li key={entry.id} className={entry.depth === 3 ? "pl-4" : ""}>
-                <a href={`#${entry.id}`} className="text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100">
+                <a href={`#${entry.id}`} className="text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">
                   {entry.text}
                 </a>
               </li>

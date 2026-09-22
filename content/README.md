@@ -28,6 +28,7 @@ tags:
   - Kotlin
 category: "Android"      # optional, shown as the article's primary category
 readingTime: "6 min read" # optional — auto-calculated if omitted
+image: "/images/my-post/cover.png"   # optional — cover shown on the featured card
 mediumUrl: "https://medium.com/..."    # optional — shows an "Originally on Medium" link
 canonicalUrl: "https://medium.com/..." # optional — SEO canonical (use for cross-posts)
 published: true           # set to false to keep as a draft (hidden everywhere)

@@ -11,6 +11,7 @@ tags:
 category: "Events"
 mediumUrl: "https://medium.com/@samratvsn/attending-the-localhost-kathmandu-event-by-net-hub-kathmandu-d29a29dbed2d"
 canonicalUrl: "https://medium.com/@samratvsn/attending-the-localhost-kathmandu-event-by-net-hub-kathmandu-d29a29dbed2d"
+image: "https://miro.medium.com/v2/resize:fill:640:360/1*KYyjeb2V91OfcgoM3iITlw.jpeg"
 published: true
 ---
 

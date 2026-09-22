@@ -11,6 +11,7 @@ tags:
 category: "Android"
 mediumUrl: "https://medium.com/@samratvsn/building-your-first-android-app-d622721bd6be"
 canonicalUrl: "https://medium.com/@samratvsn/building-your-first-android-app-d622721bd6be"
+image: "https://miro.medium.com/v2/resize:fill:640:360/1*y3POYHp5_6dRkvnQABFEog.png"
 published: true
 ---
 

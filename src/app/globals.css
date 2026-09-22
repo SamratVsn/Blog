@@ -4,12 +4,11 @@
 
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-serif: var(--font-newsreader), Georgia, "Times New Roman", serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  --color-abyss: #0a1122;
-  --color-panel: #0f1a30;
-  --color-panel-soft: #13203a;
+  --color-abyss: #020617;
+  --color-panel: #0a101f;
+  --color-panel-soft: #111827;
 }
 
 html {
@@ -22,17 +21,13 @@ body {
 }
 
 ::selection {
-  background: rgb(34 211 238 / 0.25);
+  background: rgb(59 130 246 / 0.3);
 }
 
 :focus-visible {
-  outline: 2px solid #0284c7;
+  outline: 2px solid #3b82f6;
   outline-offset: 2px;
   border-radius: 2px;
-}
-
-.dark :focus-visible {
-  outline-color: #22d3ee;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -50,9 +45,8 @@ body {
 /* ---------- Article typography ---------- */
 
 .article-body {
-  font-family: var(--font-serif);
-  font-size: 1.16rem;
-  line-height: 1.85;
+  font-size: 1.0625rem;
+  line-height: 1.8;
   overflow-wrap: break-word;
 }
 
@@ -60,34 +54,20 @@ body {
   margin-top: 1.5em;
 }
 
-/* Editorial drop cap on the opening paragraph */
-.article-body > p:first-of-type::first-letter {
-  font-weight: 600;
-  font-size: 3.1em;
-  float: left;
-  line-height: 0.85;
-  padding-right: 0.14em;
-  padding-top: 0.05em;
-  color: #0f172a;
-}
-
-.dark .article-body > p:first-of-type::first-letter {
-  color: #f1f5f9;
-}
-
 .article-body h2,
-.article-body h3 {
-  font-family: var(--font-serif);
+.article-body h3,
+.article-body h4 {
   line-height: 1.35;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   font-weight: 700;
   scroll-margin-top: 6rem;
   color: #0f172a;
 }
 
 .dark .article-body h2,
-.dark .article-body h3 {
-  color: #f1f5f9;
+.dark .article-body h3,
+.dark .article-body h4 {
+  color: #ffffff;
 }
 
 .article-body h2 {
@@ -98,7 +78,7 @@ body {
 }
 
 .dark .article-body h2 {
-  border-top-color: rgb(148 163 184 / 0.16);
+  border-top-color: rgb(255 255 255 / 0.06);
 }
 
 .article-body h3 {
@@ -107,16 +87,8 @@ body {
 }
 
 .article-body h4 {
-  font-family: var(--font-serif);
-  font-size: 1.08rem;
-  font-weight: 700;
+  font-size: 1.05rem;
   margin-top: 1.8em;
-  scroll-margin-top: 6rem;
-  color: #0f172a;
-}
-
-.dark .article-body h4 {
-  color: #f1f5f9;
 }
 
 .article-body p {
@@ -124,19 +96,19 @@ body {
 }
 
 .dark .article-body p {
-  color: #cbd5e1;
+  color: #94a3b8;
 }
 
 .article-body a {
-  color: #0369a1;
+  color: #1d4ed8;
   text-decoration: underline;
-  text-decoration-color: rgb(34 211 238 / 0.6);
+  text-decoration-color: rgb(59 130 246 / 0.5);
   text-underline-offset: 3px;
   font-weight: 500;
 }
 
 .dark .article-body a {
-  color: #67e8f9;
+  color: #93c5fd;
 }
 
 .article-body a:hover {
@@ -149,7 +121,7 @@ body {
 }
 
 .dark .article-body strong {
-  color: #f8fafc;
+  color: #e2e8f0;
 }
 
 .article-body ul,
@@ -160,7 +132,7 @@ body {
 
 .dark .article-body ul,
 .dark .article-body ol {
-  color: #cbd5e1;
+  color: #94a3b8;
 }
 
 .article-body ul {
@@ -176,25 +148,20 @@ body {
 }
 
 .article-body li::marker {
-  color: #0284c7;
-}
-
-.dark .article-body li::marker {
-  color: #22d3ee;
+  color: #3b82f6;
 }
 
 .article-body blockquote {
-  border-left: 2px solid #22d3ee;
+  border-left: 2px solid #3b82f6;
   padding: 0.25rem 0 0.25rem 1.25rem;
-  font-style: italic;
   color: #475569;
-  background: rgb(34 211 238 / 0.06);
+  background: rgb(59 130 246 / 0.06);
   border-radius: 0 8px 8px 0;
 }
 
 .dark .article-body blockquote {
   color: #94a3b8;
-  background: rgb(34 211 238 / 0.07);
+  background: rgb(59 130 246 / 0.08);
 }
 
 .article-body blockquote p {
@@ -209,7 +176,7 @@ body {
 }
 
 .dark .article-body hr {
-  border-top-color: rgb(148 163 184 / 0.2);
+  border-top-color: rgb(255 255 255 / 0.08);
 }
 
 .article-body code:not(pre code) {
@@ -219,14 +186,14 @@ body {
   border-radius: 6px;
   background: #f1f5f9;
   border: 1px solid #e2e8f0;
-  color: #0c4a6e;
+  color: #1e40af;
   white-space: nowrap;
 }
 
 .dark .article-body code:not(pre code) {
-  background: rgb(34 211 238 / 0.08);
-  border-color: rgb(148 163 184 / 0.18);
-  color: #a5f3fc;
+  background: rgb(255 255 255 / 0.04);
+  border-color: rgb(255 255 255 / 0.06);
+  color: #93c5fd;
 }
 
 .article-body img {
@@ -237,7 +204,7 @@ body {
 }
 
 .dark .article-body img {
-  border-color: rgb(148 163 184 / 0.18);
+  border-color: rgb(255 255 255 / 0.06);
 }
 
 .article-body table {
@@ -258,8 +225,8 @@ body {
 }
 
 .dark .article-body thead th {
-  border-bottom-color: rgb(148 163 184 / 0.3);
-  color: #f1f5f9;
+  border-bottom-color: rgb(255 255 255 / 0.12);
+  color: #ffffff;
 }
 
 .article-body tbody td {
@@ -270,8 +237,8 @@ body {
 }
 
 .dark .article-body tbody td {
-  border-bottom-color: rgb(148 163 184 / 0.14);
-  color: #cbd5e1;
+  border-bottom-color: rgb(255 255 255 / 0.06);
+  color: #94a3b8;
 }
 
 /* ---------- Code blocks (rehype-pretty-code / shiki) ---------- */
@@ -293,8 +260,8 @@ body {
 }
 
 .dark [data-rehype-pretty-code-figure] pre {
-  background: #0b1428;
-  border-color: rgb(148 163 184 / 0.16);
+  background: #0a101f;
+  border-color: rgb(255 255 255 / 0.06);
 }
 
 [data-rehype-pretty-code-figure] code {
@@ -310,13 +277,8 @@ body {
 }
 
 [data-rehype-pretty-code-figure] [data-highlighted-line] {
-  background: rgb(2 132 199 / 0.1);
-  border-left-color: #0284c7;
-}
-
-.dark [data-rehype-pretty-code-figure] [data-highlighted-line] {
-  background: rgb(34 211 238 / 0.1);
-  border-left-color: #22d3ee;
+  background: rgb(59 130 246 / 0.1);
+  border-left-color: #3b82f6;
 }
 
 /* Shiki emits one tree with light/dark CSS vars — pick per active theme */
@@ -342,9 +304,9 @@ body {
 }
 
 .dark [data-rehype-pretty-code-title] {
-  background: #0f1a30;
-  border-color: rgb(148 163 184 / 0.16);
-  color: #94a3b8;
+  background: #0a101f;
+  border-color: rgb(255 255 255 / 0.06);
+  color: #64748b;
 }
 
 [data-rehype-pretty-code-title] + pre {
@@ -369,9 +331,9 @@ body {
 }
 
 .dark .copy-code-btn {
-  background: #13203a;
-  border-color: rgb(148 163 184 / 0.25);
-  color: #cbd5e1;
+  background: #111827;
+  border-color: rgb(255 255 255 / 0.1);
+  color: #94a3b8;
 }
 
 [data-rehype-pretty-code-figure] pre:hover .copy-code-btn,
@@ -380,7 +342,7 @@ body {
 }
 
 .copy-code-btn:hover {
-  border-color: #22d3ee;
+  border-color: #3b82f6;
 }
 
 @media (hover: none) {

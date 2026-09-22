@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Eyebrow } from "@/components/Eyebrow";
 import { site } from "@/lib/site";
 import { ExternalIcon, GitHubIcon, LinkedInIcon } from "@/components/icons";
 
@@ -12,10 +13,8 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="mx-auto w-full max-w-2xl px-5 py-12 sm:px-8">
-      <p className="font-mono text-xs tracking-widest text-sky-700 uppercase dark:text-cyan-300/90">
-        {"//"} about
-      </p>
-      <h1 className="mt-3 font-serif text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl dark:text-slate-50">
+      <Eyebrow>About</Eyebrow>
+      <h1 className="mt-4 text-[2.1rem] leading-[1.05] font-bold tracking-[-0.03em] text-slate-900 sm:text-5xl dark:text-white">
         I&apos;m Samrat.
       </h1>
 
@@ -54,7 +53,7 @@ export default function AboutPage() {
           href={site.githubUrl}
           target="_blank"
           rel="me noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium transition-colors hover:border-cyan-400 dark:border-slate-700/70"
+          className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-[#3b82f6]/50 hover:text-slate-900 dark:border-white/[0.08] dark:text-slate-300 dark:hover:border-[#3b82f6]/40 dark:hover:text-white"
         >
           <GitHubIcon className="h-4 w-4" /> GitHub
         </a>
@@ -62,7 +61,7 @@ export default function AboutPage() {
           href={site.linkedinUrl}
           target="_blank"
           rel="me noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium transition-colors hover:border-cyan-400 dark:border-slate-700/70"
+          className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-[#3b82f6]/50 hover:text-slate-900 dark:border-white/[0.08] dark:text-slate-300 dark:hover:border-[#3b82f6]/40 dark:hover:text-white"
         >
           <LinkedInIcon className="h-4 w-4" /> LinkedIn
         </a>
@@ -70,7 +69,7 @@ export default function AboutPage() {
           href={site.portfolioUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium transition-colors hover:border-cyan-400 dark:border-slate-700/70"
+          className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-[#3b82f6]/50 hover:text-slate-900 dark:border-white/[0.08] dark:text-slate-300 dark:hover:border-[#3b82f6]/40 dark:hover:text-white"
         >
           Portfolio <ExternalIcon className="h-3.5 w-3.5" />
         </a>

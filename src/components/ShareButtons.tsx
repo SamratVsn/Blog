@@ -28,7 +28,7 @@ export function ShareButtons({ title, url }: { title: string; url: string }) {
       <button
         type="button"
         onClick={copyLink}
-        className="rounded-lg border border-slate-200 px-3 py-1.5 text-sm font-medium transition-colors hover:border-cyan-400 dark:border-slate-700/70"
+        className="rounded-lg border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-600 transition-colors hover:border-[#3b82f6]/50 hover:text-slate-900 dark:border-white/[0.08] dark:text-slate-300 dark:hover:text-white"
         aria-live="polite"
       >
         {copied ? "Copied ✓" : "Copy link"}
@@ -54,7 +54,7 @@ function ShareLink({ href, label, text }: { href: string; label: string; text: s
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="rounded-lg border border-slate-200 px-3 py-1.5 text-sm font-medium transition-colors hover:border-cyan-400 dark:border-slate-700/70"
+      className="rounded-lg border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-600 transition-colors hover:border-[#3b82f6]/50 hover:text-slate-900 dark:border-white/[0.08] dark:text-slate-300 dark:hover:text-white"
     >
       {text}
     </a>

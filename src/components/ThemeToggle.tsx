@@ -52,7 +52,7 @@ export function ThemeToggle() {
       onClick={cycle}
       title={label}
       aria-label={label}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-500 transition-colors hover:border-cyan-400 hover:text-slate-900 dark:border-slate-700/60 dark:text-slate-400 dark:hover:border-cyan-400/60 dark:hover:text-slate-100"
+      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-500 transition-colors hover:border-[#3b82f6]/50 hover:text-slate-900 dark:border-white/[0.08] dark:text-slate-400 dark:hover:border-[#3b82f6]/40 dark:hover:text-white"
     >
       {/* Sun (shown in dark mode) / Moon (shown in light mode) */}
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="hidden dark:block">

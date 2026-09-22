@@ -11,6 +11,7 @@ tags:
 category: "Development"
 mediumUrl: "https://medium.com/@samratvsn/time-to-learn-0dd1697f2db3"
 canonicalUrl: "https://medium.com/@samratvsn/time-to-learn-0dd1697f2db3"
+image: "https://miro.medium.com/v2/resize:fit:720/format:webp/0*peSb3OxLzdAtY7dm"
 published: true
 ---
 

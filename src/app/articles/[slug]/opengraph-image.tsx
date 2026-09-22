@@ -10,7 +10,7 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
   const article = await getArticle(slug);
   const title = article?.title ?? site.tagline;
   const subtitle = article
-    ? `${article.category ?? "Note"} · ${article.readingTime}`
+    ? `${article.category ?? "Blog"} · ${article.readingTime}`
     : site.description;
 
   return new ImageResponse(
@@ -23,7 +23,7 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "#0a1122",
+          background: "#020617",
           color: "#f1f5f9",
           fontFamily: "sans-serif",
         }}
@@ -31,7 +31,7 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
         <div style={{ fontSize: 28, color: "#67e8f9", fontFamily: "monospace" }}>
           {`// ${site.handle} · ${subtitle}`}
         </div>
-        <div style={{ fontSize: 60, fontWeight: 700, marginTop: 24, lineHeight: 1.2, fontFamily: "Georgia, 'Times New Roman', serif" }}>{title}</div>
+        <div style={{ fontSize: 60, fontWeight: 700, marginTop: 24, lineHeight: 1.2, letterSpacing: "-0.02em" }}>{title}</div>
         <div style={{ fontSize: 26, color: "#94a3b8", marginTop: 28 }}>{site.url}</div>
       </div>
     ),

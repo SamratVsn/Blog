@@ -28,6 +28,7 @@ type RawFrontmatter = {
   tags?: unknown;
   category?: unknown;
   readingTime?: unknown;
+  image?: unknown;
   mediumUrl?: unknown;
   canonicalUrl?: unknown;
   published?: unknown;
@@ -161,6 +162,7 @@ function toMeta(slug: string, markdown: string, data: RawFrontmatter): ArticleMe
     category: asString(data.category) || undefined,
     readingTime: readingTimeFor(markdown, asString(data.readingTime)),
     words: markdown.split(/\s+/).filter(Boolean).length,
+    image: asString(data.image) || undefined,
     mediumUrl: asString(data.mediumUrl) || undefined,
     canonicalUrl: asString(data.canonicalUrl) || undefined,
     published: data.published !== false,

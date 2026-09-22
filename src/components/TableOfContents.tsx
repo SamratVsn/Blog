@@ -37,7 +37,7 @@ export function TableOfContents({ entries }: { entries: TocEntry[] }) {
       <p className="font-mono text-xs tracking-widest text-slate-400 uppercase dark:text-slate-500">
         On this page
       </p>
-      <ul className="mt-3 space-y-1 border-l border-slate-200 dark:border-slate-700/70">
+      <ul className="mt-3 space-y-1 border-l border-slate-200 dark:border-white/[0.08]">
         {entries.map((entry) => (
           <li key={entry.id}>
             <a
@@ -47,8 +47,8 @@ export function TableOfContents({ entries }: { entries: TocEntry[] }) {
                 entry.depth === 3 ? "pl-6" : "pl-4"
               } ${
                 active === entry.id
-                  ? "border-cyan-500 font-medium text-slate-900 dark:text-white"
-                  : "border-transparent text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+                  ? "border-[#3b82f6] font-medium text-slate-900 dark:text-white"
+                  : "border-transparent text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
               }`}
             >
               {entry.text}

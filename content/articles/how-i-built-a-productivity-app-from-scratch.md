@@ -11,6 +11,7 @@ tags:
 category: "Projects"
 mediumUrl: "https://medium.com/@samratvsn/how-i-built-a-productivity-app-from-scratch-9620eed54d57"
 canonicalUrl: "https://medium.com/@samratvsn/how-i-built-a-productivity-app-from-scratch-9620eed54d57"
+image: "https://miro.medium.com/v2/resize:fit:720/format:webp/1*4hlT3BiQs6MJpCIKBSWDDw.png"
 published: true
 ---
 

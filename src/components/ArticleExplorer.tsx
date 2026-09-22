@@ -48,7 +48,7 @@ export function ArticleExplorer({
           }}
           placeholder="Search title, tags, or content…"
           autoComplete="off"
-          className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-[15px] text-slate-900 placeholder:text-slate-400 focus:border-cyan-500 focus:outline-none dark:border-slate-700/70 dark:bg-panel dark:text-slate-100 dark:placeholder:text-slate-500"
+          className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-[15px] text-slate-900 placeholder:text-slate-400 focus:border-[#3b82f6] focus:outline-none dark:border-white/[0.08] dark:bg-[#0a101f] dark:text-slate-100 dark:placeholder:text-slate-500"
         />
       </div>
 
@@ -61,7 +61,7 @@ export function ArticleExplorer({
                 setActiveTag(null);
                 setVisible(PAGE_SIZE);
               }}
-              className="inline-flex items-center rounded-md border border-cyan-500 bg-cyan-50 px-2 py-0.5 font-mono text-[11px] text-sky-800 dark:bg-cyan-400/10 dark:text-cyan-300"
+              className="inline-flex items-center rounded-md border border-[#3b82f6]/40 bg-[#3b82f6]/[0.07] px-2 py-0.5 font-mono text-[11px] text-[#3b82f6]"
             >
               ✕ {activeTag}
             </button>
@@ -118,7 +118,7 @@ export function ArticleExplorer({
               setActiveTag(null);
               setVisible(PAGE_SIZE);
             }}
-            className="mt-4 rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium transition-colors hover:border-cyan-400 dark:border-slate-700/70"
+            className="mt-4 rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-[#3b82f6]/50 hover:text-slate-900 dark:border-white/[0.08] dark:text-slate-300 dark:hover:text-white"
           >
             Clear search
           </button>
@@ -130,7 +130,7 @@ export function ArticleExplorer({
           <button
             type="button"
             onClick={() => setVisible((v) => v + PAGE_SIZE)}
-            className="rounded-lg border border-slate-200 px-5 py-2.5 text-sm font-medium transition-colors hover:border-cyan-400 dark:border-slate-700/70"
+            className="rounded-lg border border-slate-200 px-5 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:border-[#3b82f6]/50 hover:text-slate-900 dark:border-white/[0.08] dark:text-slate-300 dark:hover:text-white"
           >
             Load more ({results.length - visible} remaining)
           </button>
@@ -139,7 +139,7 @@ export function ArticleExplorer({
 
       <p className="mt-10 border-t border-slate-200/70 pt-6 text-sm dark:border-slate-800/60">
         Looking for something specific?{" "}
-        <Link href="/topics" className="font-medium text-sky-700 hover:underline dark:text-cyan-300">
+        <Link href="/topics" className="font-medium text-[#3b82f6] hover:underline">
           Browse by topic →
         </Link>
       </p>

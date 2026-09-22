@@ -11,6 +11,7 @@ tags:
 category: "Events"
 mediumUrl: "https://medium.com/@samratvsn/a-random-networking-session-turned-fruitful-e2123e919d60"
 canonicalUrl: "https://medium.com/@samratvsn/a-random-networking-session-turned-fruitful-e2123e919d60"
+image: "https://miro.medium.com/v2/resize:fill:640:360/0*KTTKhNk5OK8HZPlJ"
 published: true
 ---
 

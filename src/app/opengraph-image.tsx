@@ -15,7 +15,7 @@ export default function OgImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "#0a1122",
+          background: "#020617",
           color: "#f1f5f9",
           fontFamily: "sans-serif",
         }}
@@ -23,7 +23,7 @@ export default function OgImage() {
         <div style={{ fontSize: 28, color: "#67e8f9", fontFamily: "monospace" }}>
           {`// ${site.handle}'s engineering journal`}
         </div>
-        <div style={{ fontSize: 64, fontWeight: 700, marginTop: 24, lineHeight: 1.15, fontFamily: "Georgia, 'Times New Roman', serif" }}>
+        <div style={{ fontSize: 64, fontWeight: 700, marginTop: 24, lineHeight: 1.15, letterSpacing: "-0.02em" }}>
           {site.tagline}
         </div>
         <div style={{ fontSize: 26, color: "#94a3b8", marginTop: 28 }}>{site.description}</div>
