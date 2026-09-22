@@ -1,21 +1,21 @@
 import Link from "next/link";
-import { nav, site } from "@/lib/site";
+import { footerNav, site } from "@/lib/site";
 
 export function Footer() {
   return (
-    <footer className="border-t border-[#e2e2e2] bg-[#f4f4f4]">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-5 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-8">
-        <p className="font-mono text-[10px] tracking-[0.22em] text-[#9a9a9a]">
+    <footer className="border-t border-zinc-200 bg-paper">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 p-8 sm:flex-row sm:items-center sm:justify-between md:p-12">
+        <p className="text-[10px] font-bold tracking-[0.3em] text-zinc-400 uppercase">
           © {new Date().getFullYear()} {site.handle.toUpperCase()}. ALL RIGHTS RESERVED.
         </p>
-        <nav aria-label="Footer" className="flex flex-wrap items-center gap-x-7 gap-y-2">
-          {nav.map((item) => (
+        <nav aria-label="Footer" className="flex flex-wrap items-center gap-x-6 gap-y-2">
+          {footerNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="font-mono text-[10px] tracking-[0.22em] text-[#9a9a9a] transition-colors hover:text-[#111111]"
+              className="text-[10px] font-bold tracking-[0.3em] text-zinc-400 uppercase transition-colors hover:text-clinical-blue"
             >
-              {item.label.toUpperCase()}
+              {item.label}
             </Link>
           ))}
         </nav>

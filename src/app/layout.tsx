@@ -1,20 +1,31 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, JetBrains_Mono } from "next/font/google";
+import { config as faConfig } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { JetBrains_Mono, Montserrat, Source_Sans_3 } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const archivo = Archivo({
+faConfig.autoAddCss = false;
+
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-archivo",
-  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-montserrat",
+  weight: ["700", "800", "900"],
+  display: "swap",
+});
+const sourceSans = Source_Sans_3({
+  subsets: ["latin"],
+  variable: "--font-source-sans",
+  weight: ["400", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains-mono",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "700"],
   display: "swap",
 });
 
@@ -49,16 +60,16 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f4f4f4",
+  themeColor: "#F8F9FA",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${archivo.variable} ${jetbrainsMono.variable}`}>
-      <body className="min-h-screen bg-[#f4f4f4] font-sans text-[#111111] antialiased">
+    <html lang="en" className={`${montserrat.variable} ${sourceSans.variable} ${jetbrainsMono.variable}`}>
+      <body className="min-h-screen bg-paper font-sans text-ink antialiased">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:px-3 focus:py-2 focus:text-sm"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:text-sm"
         >
           Skip to content
         </a>

@@ -13,7 +13,7 @@ GitHub-flavored Markdown with syntax highlighting).
 5. Build / deploy — the article appears automatically. No app code changes needed.
 
 The filename (without extension) becomes the URL slug:
-`my-new-blog.md` → `/essays/my-new-blog`
+`my-new-blog.md` → `/blog/my-new-blog`
 
 ## Frontmatter
 

@@ -1,7 +1,7 @@
-/** Blue tracked section kicker used across the reference design. */
+/** Blue tracked eyebrow label used across the design system. */
 export function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-mono text-[11px] font-bold tracking-[0.28em] text-[#1e90ff] uppercase">
+    <p className="font-display text-xs font-bold tracking-[0.3em] text-clinical-blue uppercase">
       {children}
     </p>
   );

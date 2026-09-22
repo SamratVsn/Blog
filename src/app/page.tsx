@@ -1,6 +1,12 @@
+import {
+  faArrowUpRightFromSquare,
+  faEnvelope,
+} from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faLinkedinIn, faXTwitter } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import { BentoCard } from "@/components/BentoCard";
 import { Eyebrow } from "@/components/Eyebrow";
-import { ExternalIcon, GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons";
 import { formatDisplayDate, getAllMeta, getCategories } from "@/lib/articles";
 import { site } from "@/lib/site";
 
@@ -12,32 +18,35 @@ function readTime(readingTime: string) {
   return readingTime.replace("min read", "MIN READ").toUpperCase();
 }
 
+const quote = {
+  text: "Learning Android isn't just about learning Android. It's about learning how to turn an idea into something that works.",
+  source: "Building your first Android App",
+  slug: "building-your-first-android-app",
+};
+
 export default function HomePage() {
   const articles = getAllMeta();
   const categories = getCategories();
-  const [featured, ...rest] = articles;
-  const second = rest[0];
-  const third = rest[1];
-
-  const quote = {
-    text: "Learning Android isn't just about learning Android. It's about learning how to turn an idea into something that works.",
-    source: "Building your first Android App",
-    slug: "building-your-first-android-app",
-  };
+  const [featured, second, third, ...rest] = articles;
+  void rest;
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
-      {/* Row 1 */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-        <div className="flex min-h-[420px] flex-col justify-between bg-[#111111] p-8 sm:p-10 lg:col-span-5">
-          <Eyebrow>Blogs &amp; Essays</Eyebrow>
-          <h1 className="text-[64px] leading-[0.95] font-black tracking-[-0.03em] text-white sm:text-[84px]">
+    <div className="bg-paper p-6 md:p-12">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 min-[640px]:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[minmax(240px,auto)]">
+        {/* Branding / bio */}
+        <BentoCard dark className="relative col-span-full flex min-h-[480px] flex-col justify-between overflow-hidden p-8 min-[640px]:col-span-2 lg:row-span-2">
+          <span
+            aria-hidden="true"
+            className="absolute top-6 right-6 h-16 w-16 border-t-2 border-r-2 border-white opacity-10"
+          />
+          <Eyebrow>Portfolio &amp; Essays</Eyebrow>
+          <h1 className="font-display text-6xl leading-[0.95] font-black tracking-tight text-white md:text-8xl">
             SAMRAT
             <br />
             VSN.
           </h1>
           <div className="flex items-end justify-between gap-6">
-            <p className="max-w-[240px] text-[15px] leading-relaxed text-[#b5b5b5]">
+            <p className="max-w-[280px] text-[15px] leading-relaxed text-zinc-400">
               {site.description}
             </p>
             <a
@@ -45,17 +54,19 @@ export default function HomePage() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Open portfolio"
-              className="shrink-0 text-[#1e90ff] transition-transform hover:scale-110"
+              className="shrink-0 text-clinical-blue transition-transform hover:scale-110"
             >
-              <ExternalIcon className="h-9 w-9" />
+              <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="text-3xl" />
             </a>
           </div>
-        </div>
+        </BentoCard>
 
+        {/* Featured post */}
         {featured && (
-          <Link
-            href={`/essays/${featured.slug}`}
-            className="group flex flex-col border border-[#e7e7e7] bg-white lg:col-span-7"
+          <BentoCard
+            href={`/blog/${featured.slug}`}
+            label={`Read featured post: ${featured.title}`}
+            className="col-span-full min-[640px]:col-span-2 lg:row-span-2 lg:p-2"
           >
             <div className="relative overflow-hidden">
               {featured.image && (
@@ -64,159 +75,163 @@ export default function HomePage() {
                   src={featured.image}
                   alt=""
                   loading="lazy"
-                  className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                  className="aspect-[16/10] w-full object-cover transition-transform duration-500 hover:scale-105"
                 />
               )}
-              <span className="absolute top-4 left-4 bg-[#1e90ff] px-2.5 py-1 font-mono text-[10px] font-bold tracking-[0.18em] text-white uppercase">
+              <span className="absolute top-4 left-4 bg-clinical-blue px-3 py-1 text-[11px] font-bold tracking-[0.14em] text-white uppercase">
                 Featured
               </span>
             </div>
-            <div className="flex flex-1 flex-col p-7 sm:p-9">
-              <p className="font-mono text-[11px] tracking-[0.14em] text-[#9a9a9a] uppercase">
+            <div className="p-6 sm:p-8">
+              <p className="font-mono text-[11px] tracking-[0.14em] text-zinc-500 uppercase">
                 {stamp(featured.date)} <span className="mx-2">•</span> {readTime(featured.readingTime)}
               </p>
-              <h2 className="mt-3 max-w-xl text-2xl leading-tight font-black tracking-[-0.02em] text-[#111111] transition-colors group-hover:text-[#1e90ff] sm:text-[32px]">
+              <h2 className="mt-3 font-display text-2xl leading-tight font-black tracking-tight text-ink transition-colors group-hover:text-clinical-blue sm:text-3xl">
                 {featured.title}
               </h2>
-              <p className="mt-3 line-clamp-2 max-w-xl text-[15px] leading-relaxed text-[#5a5a5a]">
+              <p className="mt-3 line-clamp-2 text-[15px] leading-relaxed text-zinc-500">
                 {featured.description}
               </p>
             </div>
-          </Link>
+          </BentoCard>
         )}
-      </div>
 
-      {/* Row 2 */}
-      <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-12">
-        <div className="flex flex-col bg-[#1e90ff] p-7 lg:col-span-3">
-          <h2 className="text-xl leading-tight font-black tracking-tight text-white">
-            FOLLOW THE FEED
+        {/* RSS (honest stand-in for newsletter: no backend, real feed) */}
+        <BentoCard className="flex flex-col bg-clinical-blue p-7">
+          <h2 className="font-display text-xl leading-tight font-black tracking-tight text-white">
+            Stay Synchronized
           </h2>
           <p className="mt-2 text-[13.5px] leading-relaxed text-white/85">
-            Every blog, straight to your reader. No account needed.
+            Every blog, straight to your reader via RSS. No inbox needed.
           </p>
-          <div className="mt-6">
-            <label htmlFor="rss-link" className="sr-only">
-              RSS feed
-            </label>
-            <Link
-              id="rss-link"
-              href="/feed.xml"
-              className="block bg-white py-3 text-center font-mono text-[12px] font-bold tracking-[0.22em] text-[#1e90ff] transition-colors hover:bg-[#f4f4f4]"
-            >
-              RSS FEED →
-            </Link>
-          </div>
-        </div>
+          <Link
+            href="/feed.xml"
+            className="mt-auto block bg-white pt-0 text-center font-display text-[13px] font-bold tracking-[0.2em] text-clinical-blue uppercase transition-colors hover:bg-ink hover:text-white"
+          >
+            <span className="block py-3.5">RSS Feed</span>
+          </Link>
+        </BentoCard>
 
+        {/* GitHub */}
         <a
           href={site.githubUrl}
           target="_blank"
           rel="me noopener noreferrer"
-          className="group flex flex-col justify-between border border-[#e7e7e7] bg-white p-7 transition-colors hover:border-[#1e90ff]/50 lg:col-span-3"
+          aria-label="GitHub profile"
+          className="brutal brutal-dark group relative flex min-h-[240px] flex-col justify-between bg-zinc-100 p-7 transition-all hover:bg-zinc-900"
         >
-          <GitHubIcon className="h-8 w-8 text-[#111111]" />
-          <div className="mt-10">
-            <p className="font-mono text-[11px] tracking-[0.22em] text-[#9a9a9a] uppercase">
-              Open source
+          <div className="flex items-start justify-between">
+            <FontAwesomeIcon icon={faGithub} className="text-3xl text-ink transition-colors group-hover:text-white" />
+            <FontAwesomeIcon
+              icon={faArrowUpRightFromSquare}
+              className="text-lg text-clinical-blue opacity-0 transition-opacity group-hover:opacity-100"
+            />
+          </div>
+          <div>
+            <p className="text-xs font-bold tracking-[0.2em] text-zinc-500 uppercase transition-colors group-hover:text-zinc-400">
+              Open Source
             </p>
-            <p className="mt-2 text-xl font-black tracking-tight text-[#111111] group-hover:text-[#1e90ff]">
+            <p className="mt-1 font-display text-xl font-black tracking-tight text-ink transition-colors group-hover:text-white">
               @SamratVsn
             </p>
           </div>
         </a>
 
+        {/* Secondary teaser */}
         {second && (
-          <Link
-            href={`/essays/${second.slug}`}
-            className="group flex flex-col justify-between bg-[#e9e9e9] p-7 transition-colors hover:bg-[#e2e2e2] lg:col-span-3"
-          >
-            <p className="font-mono text-[11px] font-bold tracking-[0.22em] text-[#1e90ff] uppercase">
-              {second.category}
+          <BentoCard href={`/blog/${second.slug}`} label={`Read: ${second.title}`} className="flex min-h-[240px] flex-col justify-between bg-surface p-7">
+            <p className="text-xs font-bold tracking-[0.2em] text-clinical-blue uppercase">
+              {(second.category ?? "Blog").toUpperCase()}
             </p>
-            <div className="mt-8">
-              <h2 className="text-xl leading-snug font-black tracking-tight text-[#111111]">
+            <div>
+              <h2 className="font-display text-xl leading-snug font-black tracking-tight text-ink group-hover:underline">
                 {second.title}
               </h2>
-              <p className="mt-4 font-mono text-[11px] tracking-[0.14em] text-[#9a9a9a] uppercase">
+              <p className="mt-3 font-mono text-[11px] tracking-[0.14em] text-zinc-500 uppercase">
                 {stamp(second.date)}
               </p>
             </div>
-          </Link>
+          </BentoCard>
         )}
 
+        {/* Quote card (real words, real attribution) */}
         <Link
-          href={`/essays/${quote.slug}`}
-          className="group flex flex-col justify-between border border-dashed border-[#c9c9c9] bg-[#f4f4f4] p-7 lg:col-span-3"
+          href={`/blog/${quote.slug}`}
+          className="brutal flex min-h-[240px] flex-col items-center justify-center border-2 border-dashed border-zinc-300 bg-paper p-7 text-center"
+          aria-label={`Read the essay this quote is from: ${quote.source}`}
         >
-          <p className="text-[17px] leading-relaxed text-[#5a5a5a] italic">
+          <p className="font-[Georgia,serif] text-[17px] leading-relaxed text-zinc-600 italic">
             &ldquo;{quote.text}&rdquo;
           </p>
-          <p className="mt-6 text-center font-mono text-[10px] tracking-[0.18em] text-[#9a9a9a] uppercase">
+          <p className="mt-4 font-mono text-[10px] tracking-[0.18em] text-zinc-500 uppercase">
             — From &ldquo;{quote.source}&rdquo;
           </p>
         </Link>
-      </div>
 
-      {/* Row 3 */}
-      <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-12">
+        {/* Third teaser, wide */}
         {third && (
-          <Link
-            href={`/essays/${third.slug}`}
-            className="group flex flex-col border border-[#e7e7e7] bg-white sm:flex-row lg:col-span-5"
+          <BentoCard
+            href={`/blog/${third.slug}`}
+            label={`Read: ${third.title}`}
+            className="col-span-full flex flex-col border-l-8 border-l-clinical-blue bg-white sm:flex-row min-[640px]:col-span-2 lg:col-span-2"
           >
             <div className="flex flex-1 flex-col justify-center p-7 sm:p-8">
-              <p className="font-mono text-[11px] tracking-[0.22em] text-[#9a9a9a] uppercase">
-                {third.category}
+              <p className="text-xs font-bold tracking-[0.2em] text-clinical-blue uppercase">
+                {(third.category ?? "Blog").toUpperCase()}
               </p>
-              <h2 className="mt-3 text-[26px] leading-tight font-black tracking-[-0.02em] text-[#111111] group-hover:text-[#1e90ff]">
+              <h2 className="mt-3 font-display text-2xl leading-tight font-black tracking-tight text-ink sm:text-[28px]">
                 {third.title}
               </h2>
-              <p className="mt-3 line-clamp-3 text-[14px] leading-relaxed text-[#5a5a5a]">
+              <p className="mt-3 line-clamp-2 text-[14.5px] leading-relaxed text-zinc-500">
                 {third.description}
               </p>
             </div>
             {third.image && (
-              <div className="overflow-hidden sm:w-44 sm:shrink-0">
+              <div className="overflow-hidden sm:w-56 sm:shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={third.image}
                   alt=""
                   loading="lazy"
-                  className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-[1.04] sm:h-full"
+                  className="h-44 w-full object-cover transition-transform duration-500 hover:scale-105 sm:h-full"
                 />
               </div>
             )}
-          </Link>
+          </BentoCard>
         )}
 
-        <div className="flex flex-col justify-between bg-[#111111] p-7 sm:p-8 lg:col-span-4">
-          <div className="flex gap-10">
+        {/* Stats (real counts only) */}
+        <div className="brutal brutal-dark flex min-h-[240px] flex-col justify-between bg-ink p-7 text-white">
+          <div className="grid grid-cols-2 gap-4">
             <div>
-              <p className="text-[26px] leading-none font-black text-[#1e90ff]">
+              <p className="font-display text-4xl font-black text-clinical-blue">
                 {String(articles.length).padStart(2, "0")}
               </p>
-              <p className="mt-2 font-mono text-[10px] tracking-[0.2em] text-[#8a8a8a] uppercase">
-                Blogs written
+              <p className="mt-1 text-[11px] font-bold tracking-[0.16em] text-zinc-400 uppercase">
+                Blogs Written
               </p>
             </div>
             <div>
-              <p className="text-[26px] leading-none font-black text-[#1e90ff]">
+              <p className="font-display text-4xl font-black text-clinical-blue">
                 {String(categories.length).padStart(2, "0")}
               </p>
-              <p className="mt-2 font-mono text-[10px] tracking-[0.2em] text-[#8a8a8a] uppercase">
+              <p className="mt-1 text-[11px] font-bold tracking-[0.16em] text-zinc-400 uppercase">
                 Categories
               </p>
             </div>
           </div>
-          <p className="mt-10 flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] text-[#8a8a8a] uppercase">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-            Learning in public
+          <p className="flex items-center gap-2 text-[11px] font-bold tracking-[0.16em] text-zinc-400 uppercase">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75 motion-reduce:animate-none" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+            </span>
+            Open to opportunities
           </p>
         </div>
 
-        <nav aria-label="Site" className="flex flex-col justify-between border border-[#e7e7e7] bg-white p-7 sm:p-8 lg:col-span-3">
-          <div className="flex flex-col gap-3">
+        {/* Nav card */}
+        <nav aria-label="Site" className="brutal flex min-h-[240px] flex-col justify-between bg-white p-7">
+          <div className="flex flex-col gap-2.5">
             {[
               { href: "/", label: "Index" },
               { href: "/essays", label: "Essays" },
@@ -226,21 +241,24 @@ export default function HomePage() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-[15px] font-black tracking-tight text-[#111111] transition-colors hover:text-[#1e90ff]"
+                className="font-display text-lg font-black tracking-tight text-ink uppercase transition-colors hover:text-clinical-blue"
               >
-                {item.label.toUpperCase()}
+                {item.label}
               </Link>
             ))}
           </div>
-          <div className="mt-8 flex items-center gap-4 text-[#9a9a9a]">
-            <a href={site.githubUrl} target="_blank" rel="me noopener noreferrer" aria-label="GitHub" className="transition-colors hover:text-[#111111]">
-              <GitHubIcon className="h-[18px] w-[18px]" />
+          <div className="mt-6 flex items-center gap-5 text-zinc-500">
+            <a href={site.githubUrl} target="_blank" rel="me noopener noreferrer" aria-label="GitHub" className="transition-colors hover:text-clinical-blue">
+              <FontAwesomeIcon icon={faGithub} className="text-lg" />
             </a>
-            <a href={site.linkedinUrl} target="_blank" rel="me noopener noreferrer" aria-label="LinkedIn" className="transition-colors hover:text-[#111111]">
-              <LinkedInIcon className="h-[18px] w-[18px]" />
+            <a href={site.linkedinUrl} target="_blank" rel="me noopener noreferrer" aria-label="LinkedIn" className="transition-colors hover:text-clinical-blue">
+              <FontAwesomeIcon icon={faLinkedinIn} className="text-lg" />
             </a>
-            <a href={site.xUrl} target="_blank" rel="me noopener noreferrer" aria-label="X" className="transition-colors hover:text-[#111111]">
-              <XIcon className="h-[16px] w-[16px]" />
+            <a href={site.xUrl} target="_blank" rel="me noopener noreferrer" aria-label="X" className="transition-colors hover:text-clinical-blue">
+              <FontAwesomeIcon icon={faXTwitter} className="text-lg" />
+            </a>
+            <a href={`mailto:${site.email}`} aria-label="Email" className="transition-colors hover:text-clinical-blue">
+              <FontAwesomeIcon icon={faEnvelope} className="text-lg" />
             </a>
           </div>
         </nav>

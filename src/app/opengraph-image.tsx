@@ -15,15 +15,15 @@ export default function OgImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "#f4f4f4",
-          color: "#111111",
+          background: "#F8F9FA",
+          color: "#1A1A1A",
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ fontSize: 26, color: "#1e90ff", fontFamily: "monospace", letterSpacing: 4 }}>
-          {`// ${site.handle} — BLOGS & ESSAYS`.toUpperCase()}
+        <div style={{ fontSize: 24, color: "#007AFF", fontFamily: "monospace", letterSpacing: 5 }}>
+          {"SAMRAT."}
         </div>
-        <div style={{ fontSize: 72, fontWeight: 900, marginTop: 24, lineHeight: 1.05, letterSpacing: "-0.02em" }}>
+        <div style={{ fontSize: 76, fontWeight: 900, marginTop: 24, lineHeight: 1.02, letterSpacing: "-0.02em" }}>
           {site.tagline}
         </div>
         <div style={{ fontSize: 26, color: "#5a5a5a", marginTop: 28 }}>{site.description}</div>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArchiveList, type SearchableArticle } from "@/components/ArchiveList";
+import { ArchiveBrowser, type SearchableArticle } from "@/components/ArchiveBrowser";
 import { Eyebrow } from "@/components/Eyebrow";
 import { getAllMeta, getArticle, getCategories } from "@/lib/articles";
 
@@ -20,15 +20,17 @@ export default async function ArchivePage() {
   );
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
-      <div className="pt-10 sm:pt-14">
-        <Eyebrow>Chronology</Eyebrow>
-        <h1 className="mt-4 text-6xl font-black tracking-[-0.03em] text-[#111111] sm:text-8xl">
-          ARCHIVE.
-        </h1>
+    <div className="mx-auto w-full max-w-7xl p-8 md:p-12">
+      <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <Eyebrow>Chronology</Eyebrow>
+          <h1 className="mt-4 font-display text-6xl font-black tracking-tight text-ink md:text-8xl">
+            ARCHIVE.
+          </h1>
+        </div>
       </div>
-      <div className="mt-10">
-        <ArchiveList articles={searchable} categories={categories} />
+      <div className="mt-8">
+        <ArchiveBrowser articles={searchable} categories={categories} />
       </div>
     </div>
   );

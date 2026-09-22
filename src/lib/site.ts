@@ -24,3 +24,11 @@ export const nav = [
   { href: "/archive", label: "Archive" },
   { href: "/about", label: "About" },
 ] as const;
+
+export const footerNav = [
+  { href: "/", label: "Index" },
+  { href: "/essays", label: "Essays" },
+  { href: "/archive", label: "Archive" },
+  { href: "/about", label: "About" },
+  { href: "/legal", label: "Legal" },
+] as const;
