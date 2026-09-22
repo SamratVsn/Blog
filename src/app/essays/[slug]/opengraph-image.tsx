@@ -23,16 +23,16 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "#020617",
-          color: "#f1f5f9",
+          background: "#f4f4f4",
+          color: "#111111",
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ fontSize: 28, color: "#67e8f9", fontFamily: "monospace" }}>
-          {`// ${site.handle} · ${subtitle}`}
+        <div style={{ fontSize: 26, color: "#1e90ff", fontFamily: "monospace", letterSpacing: 4 }}>
+          {`// ${site.handle} · ${subtitle}`.toUpperCase()}
         </div>
-        <div style={{ fontSize: 60, fontWeight: 700, marginTop: 24, lineHeight: 1.2, letterSpacing: "-0.02em" }}>{title}</div>
-        <div style={{ fontSize: 26, color: "#94a3b8", marginTop: 28 }}>{site.url}</div>
+        <div style={{ fontSize: 64, fontWeight: 900, marginTop: 24, lineHeight: 1.1, letterSpacing: "-0.02em" }}>{title}</div>
+        <div style={{ fontSize: 26, color: "#5a5a5a", marginTop: 28 }}>{site.url}</div>
       </div>
     ),
     { ...size }

@@ -9,56 +9,18 @@ export const site = {
   portfolioUrl: "https://www.samratparajuli0.com.np/",
   githubUrl: "https://github.com/SamratVsn",
   linkedinUrl: "https://linkedin.com/in/samratvsn/",
+  xUrl: "https://x.com/SamratVsn",
+  email: "samratvsn@gmail.com",
   author: {
     name: "Samrat Parajuli",
     bio: "I'm Samrat, a student and Android developer from Nepal. I build native Android applications with Kotlin and Jetpack Compose and document what I learn along the way.",
-    location: "Nepal",
+    location: "Kathmandu, Nepal",
   },
-  currentlyLearning: [
-    "Kotlin coroutines & Flow",
-    "Jetpack Compose internals",
-    "Clean Architecture on Android",
-  ],
 } as const;
 
-export type Topic = {
-  slug: string;
-  label: string;
-  description: string;
-};
-
-/** Curated topics. Easy to expand — just add an entry. Articles match by tag (case-insensitive). */
-export const topics: Topic[] = [
-  {
-    slug: "android",
-    label: "Android",
-    description: "Native Android development: Jetpack Compose, architecture, and hands-on blogs.",
-  },
-  {
-    slug: "kotlin",
-    label: "Kotlin",
-    description: "The language I build with — coroutines, Flow, and idiomatic Kotlin.",
-  },
-  {
-    slug: "development",
-    label: "Development",
-    description: "Craft, tooling, workflows, and how I learn to build software.",
-  },
-  {
-    slug: "projects",
-    label: "Projects",
-    description: "Things I'm building — decisions, trade-offs, and build logs.",
-  },
-  {
-    slug: "events",
-    label: "Events",
-    description: "Hackathons, meetups, workshops, and community blogs.",
-  },
-];
-
 export const nav = [
-  { href: "/", label: "Home" },
-  { href: "/articles", label: "Articles" },
-  { href: "/topics", label: "Topics" },
+  { href: "/", label: "Index" },
+  { href: "/essays", label: "Essays" },
+  { href: "/archive", label: "Archive" },
   { href: "/about", label: "About" },
 ] as const;

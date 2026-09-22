@@ -18,10 +18,36 @@ export function LinkedInIcon({ className = "" }: { className?: string }) {
   );
 }
 
-export function ExternalIcon({ className = "" }: { className?: string }) {
+export function XIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M18.9 2H22l-6.77 7.74L23.2 22h-6.23l-4.88-6.38L6.5 22H3.34l7.24-8.28L2.8 2h6.39l4.41 5.83L18.9 2Zm-1.1 17.8h1.72L7.28 3.9H5.43l12.37 15.9Z" />
+    </svg>
+  );
+}
+
+export function MailIcon({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className}>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m3 7 9 6 9-6" />
+    </svg>
+  );
+}
+
+export function ExternalIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className}>
       <path d="M7 17 17 7M8 7h9v9" />
+    </svg>
+  );
+}
+
+export function SearchIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true" className={className}>
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-3.8-3.8" />
     </svg>
   );
 }

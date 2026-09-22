@@ -34,7 +34,7 @@ export function ReadingProgress() {
       className="fixed inset-x-0 top-0 z-50 h-[3px] bg-transparent"
     >
       <div
-        className="h-full bg-[#3b82f6] transition-[width] duration-100"
+        className="h-full bg-[#1e90ff] transition-[width] duration-100"
         style={{ width: `${Math.round(progress * 100)}%` }}
       />
     </div>

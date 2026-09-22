@@ -1,6 +1,6 @@
-# Content — how to publish an article
+# Content — how to publish a blog
 
-Articles live in `content/articles/` as Markdown files. Both `.md` and
+Blogs live in `content/articles/` as Markdown files. Both `.md` and
 `.mdx` extensions are accepted and parsed the same way (frontmatter +
 GitHub-flavored Markdown with syntax highlighting).
 
@@ -13,7 +13,7 @@ GitHub-flavored Markdown with syntax highlighting).
 5. Build / deploy — the article appears automatically. No app code changes needed.
 
 The filename (without extension) becomes the URL slug:
-`my-new-article.md` → `/articles/my-new-article`
+`my-new-blog.md` → `/essays/my-new-blog`
 
 ## Frontmatter
 
@@ -42,7 +42,11 @@ published: true           # set to false to keep as a draft (hidden everywhere)
 - Links, ordered / unordered lists, blockquotes
 - Fenced code blocks with a copy button and syntax highlighting
   (kotlin, java, javascript, typescript, html, css, bash, json, xml, sql, …)
-- Tables, images with captions, horizontal rules (`---`)
+- Tables, images, horizontal rules (`---`)
+
+The first short, link-free quote that isn't a sign-off is automatically
+rendered as the featured black pull-quote panel. Everything else renders
+as a regular blockquote.
 
 Code fences should always declare a language:
 

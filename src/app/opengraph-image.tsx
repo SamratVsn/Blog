@@ -15,18 +15,18 @@ export default function OgImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "#020617",
-          color: "#f1f5f9",
+          background: "#f4f4f4",
+          color: "#111111",
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ fontSize: 28, color: "#67e8f9", fontFamily: "monospace" }}>
-          {`// ${site.handle}'s engineering journal`}
+        <div style={{ fontSize: 26, color: "#1e90ff", fontFamily: "monospace", letterSpacing: 4 }}>
+          {`// ${site.handle} — BLOGS & ESSAYS`.toUpperCase()}
         </div>
-        <div style={{ fontSize: 64, fontWeight: 700, marginTop: 24, lineHeight: 1.15, letterSpacing: "-0.02em" }}>
+        <div style={{ fontSize: 72, fontWeight: 900, marginTop: 24, lineHeight: 1.05, letterSpacing: "-0.02em" }}>
           {site.tagline}
         </div>
-        <div style={{ fontSize: 26, color: "#94a3b8", marginTop: 28 }}>{site.description}</div>
+        <div style={{ fontSize: 26, color: "#5a5a5a", marginTop: 28 }}>{site.description}</div>
       </div>
     ),
     { ...size }

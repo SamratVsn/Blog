@@ -94,6 +94,54 @@ function extractToc(markdown: string): TocEntry[] {
   return toc;
 }
 
+type HastNode = {
+  type: string;
+  tagName?: string;
+  value?: string;
+  properties?: Record<string, unknown>;
+  children?: HastNode[];
+};
+
+function hastText(node: HastNode): string {
+  if (node.type === "text") return node.value ?? "";
+  return (node.children ?? []).map(hastText).join("");
+}
+
+function hasDescendantTag(node: HastNode, tags: string[]): boolean {
+  if (node.type === "element" && node.tagName && tags.includes(node.tagName)) return true;
+  return (node.children ?? []).some((c) => hasDescendantTag(c, tags));
+}
+
+const SIGNOFF_RE = /hello readers|thank you for reading|connect with me|across my socials|follow for future posts/i;
+
+/**
+ * Marks the first short, link-free, non-sign-off quote as the featured
+ * pull-quote panel. Everything else renders as a regular blockquote.
+ */
+function rehypePullquote() {
+  return (tree: HastNode) => {
+    let done = false;
+    const walk = (node: HastNode) => {
+      if (done) return;
+      if (node.type === "element" && node.tagName === "blockquote") {
+        const text = hastText(node).replace(/\s+/g, " ").trim();
+        if (
+          text.length > 0 &&
+          text.length <= 400 &&
+          !hasDescendantTag(node, ["a", "img"]) &&
+          !SIGNOFF_RE.test(text)
+        ) {
+          node.properties = { ...(node.properties ?? {}), dataPullquote: "" };
+          done = true;
+          return;
+        }
+      }
+      for (const child of node.children ?? []) walk(child);
+    };
+    walk(tree);
+  };
+}
+
 function toPlainText(markdown: string): string {
   return markdown
     .replace(/```[\s\S]*?```/g, " ")
@@ -122,8 +170,9 @@ async function markdownToHtml(markdown: string): Promise<string> {
     .use(remarkGfm)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeSlug)
+    .use(rehypePullquote)
     .use(rehypePrettyCode, {
-      theme: { light: "github-light", dark: "github-dark" },
+      theme: "github-light",
       keepBackground: false,
       defaultLang: "plaintext",
     })
@@ -200,13 +249,13 @@ export async function getArticle(slug: string): Promise<Article | null> {
   };
 }
 
-/** Articles for a curated topic: matches the topic label against tags or category. */
-export function getArticlesByTopic(label: string): ArticleMeta[] {
-  const key = label.toLowerCase();
-  return getAllMeta().filter(
-    (m) =>
-      m.category?.toLowerCase() === key || m.tags.some((t) => t.toLowerCase() === key)
-  );
+/** Unique categories across published articles, in first-seen (newest-first) order. */
+export function getCategories(): string[] {
+  const seen: string[] = [];
+  for (const meta of getAllMeta()) {
+    if (meta.category && !seen.includes(meta.category)) seen.push(meta.category);
+  }
+  return seen;
 }
 
 export function getAllTags(): { label: string; count: number }[] {

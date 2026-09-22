@@ -1,15 +1,20 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Archivo, JetBrains_Mono } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { themeInitScript } from "@/components/ThemeToggle";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+const archivo = Archivo({
+  subsets: ["latin"],
+  variable: "--font-archivo",
+  weight: ["400", "500", "600", "700", "800", "900"],
+  display: "swap",
+});
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains-mono",
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -44,22 +49,16 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#020617" },
-  ],
+  themeColor: "#f4f4f4",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
-      <body className="min-h-screen bg-white font-sans text-slate-600 antialiased dark:bg-[#020617] dark:text-slate-400">
+    <html lang="en" className={`${archivo.variable} ${jetbrainsMono.variable}`}>
+      <body className="min-h-screen bg-[#f4f4f4] font-sans text-[#111111] antialiased">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm dark:focus:bg-panel"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:px-3 focus:py-2 focus:text-sm"
         >
           Skip to content
         </a>
