@@ -17,7 +17,7 @@ export function BentoCard({
   children: React.ReactNode;
   label?: string;
 }) {
-  const cls = `brutal group block ${dark ? "brutal-dark bg-ink text-white" : "bg-white"} ${className}`;
+  const cls = `brutal group block ${dark ? "brutal-dark bg-ink text-white" : ""} ${className}`;
   if (href) {
     return (
       <Link href={href} aria-label={label} className={cls}>

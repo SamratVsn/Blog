@@ -66,7 +66,7 @@ export default function HomePage() {
           <BentoCard
             href={`/blog/${featured.slug}`}
             label={`Read featured post: ${featured.title}`}
-            className="col-span-full min-[640px]:col-span-2 lg:row-span-2 lg:p-2"
+            className="col-span-full min-[640px]:col-span-2 lg:row-span-2 lg:p-2 bg-white"
           >
             <div className="relative overflow-hidden">
               {featured.image && (
@@ -96,19 +96,22 @@ export default function HomePage() {
           </BentoCard>
         )}
 
-        {/* RSS (honest stand-in for newsletter: no backend, real feed) */}
+        {/* Follow (LinkedIn) */}
         <BentoCard className="flex flex-col bg-clinical-blue p-7">
           <h2 className="font-display text-xl leading-tight font-black tracking-tight text-white">
-            Stay Synchronized
+            Follow Me
           </h2>
           <p className="mt-2 text-[13.5px] leading-relaxed text-white/85">
-            Every blog, straight to your reader via RSS. No inbox needed.
+            Let&apos;s connect — I post about Android, Kotlin, and building in public.
           </p>
           <Link
-            href="/feed.xml"
+            href={site.linkedinUrl}
+            target="_blank"
+            rel="me noopener noreferrer"
+            aria-label="Follow Samrat on LinkedIn"
             className="mt-auto block bg-white pt-0 text-center font-display text-[13px] font-bold tracking-[0.2em] text-clinical-blue uppercase transition-colors hover:bg-ink hover:text-white"
           >
-            <span className="block py-3.5">RSS Feed</span>
+            <span className="block py-3.5">LinkedIn →</span>
           </Link>
         </BentoCard>
 

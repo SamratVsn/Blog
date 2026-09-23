@@ -12,21 +12,24 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about" },
 };
 
-const timeline = [
+const journey = [
   {
-    period: "2024 — Present",
-    title: "Learning Android development",
-    text: "Self-taught native Android development with Kotlin and Jetpack Compose — learning by building, and writing down everything along the way.",
+    label: "2026 — Present",
+    title: "Currently",
+    text: "I'm building complete projects, documenting what I learn, and working toward becoming a professional Android engineer.",
+    active: true,
   },
   {
-    period: "May 2026",
-    title: "Sangam Club Exhibition",
-    text: "Showcased Viram, a productivity platform for breaking social media addiction, built with Prince Timilsina for the Runway Career Connect exhibition.",
+    label: "Jan 2026",
+    title: "Android",
+    text: "I began building Android applications with Kotlin and Jetpack Compose, while learning architecture, networking, persistence, and state management.",
+    active: false,
   },
   {
-    period: "Jun 2026",
-    title: "Localhost Kathmandu",
-    text: "Attended the Microsoft Build local event organized by .Net Hub Kathmandu — sessions on AI agents, .NET security, and AI-native data applications.",
+    label: "Oct 2025",
+    title: "Kotlin",
+    text: "Kotlin was the starting point of my Android journey. I learned the language fundamentals, object-oriented programming, and functional programming concepts.",
+    active: false,
   },
 ];
 
@@ -91,10 +94,16 @@ export default function AboutPage() {
           </section>
 
           <section>
-            <Eyebrow>Track Record</Eyebrow>
+            <Eyebrow>Android Journey</Eyebrow>
             <ul className="mt-8">
-              {timeline.map((item) => (
-                <TimelineItem key={item.title} period={item.period} title={item.title} text={item.text} />
+              {journey.map((item) => (
+                <TimelineItem
+                  key={item.title}
+                  label={item.label}
+                  title={item.title}
+                  text={item.text}
+                  active={item.active}
+                />
               ))}
             </ul>
           </section>
