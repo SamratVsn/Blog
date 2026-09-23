@@ -22,7 +22,7 @@ const journey = [
   {
     label: "Jan 2026",
     title: "Android",
-    text: "I began building Android applications with Kotlin and Jetpack Compose, while learning architecture, networking, persistence, and state management.",
+    text: "I began learning to build Android applications with Kotlin and Jetpack Compose. I started with small projects and gradually moved on to more complex applications.",
     active: false,
   },
   {
