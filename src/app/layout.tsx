@@ -4,6 +4,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { JetBrains_Mono, Montserrat, Source_Sans_3 } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { JsonLd } from "@/components/JsonLd";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -36,8 +37,17 @@ export const metadata: Metadata = {
     template: `%s · ${site.handle}`,
   },
   description: site.description,
+  keywords: [
+    "Android development",
+    "Kotlin",
+    "Jetpack Compose",
+    "software architecture",
+    "software engineering",
+    "programming blog",
+  ],
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
+  category: "technology",
   alternates: {
     canonical: "/",
     types: { "application/rss+xml": `${site.url}/feed.xml` },
@@ -54,9 +64,36 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${site.handle} — ${site.tagline}`,
     description: site.description,
+    creator: site.handle,
+    site: site.handle,
   },
   robots: { index: true, follow: true },
   icons: { icon: "/favicon.svg" },
+};
+
+const webSiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${site.url}/#website`,
+  name: `${site.handle} — ${site.tagline}`,
+  alternateName: site.handle,
+  url: site.url,
+  description: site.description,
+  inLanguage: "en",
+  publisher: { "@type": "Person", name: site.name, url: site.url },
+};
+
+const authorJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${site.url}/#person`,
+  name: site.name,
+  alternateName: site.handle,
+  description: site.author.bio,
+  jobTitle: site.role,
+  url: site.url,
+  email: site.email,
+  sameAs: [site.portfolioUrl, site.githubUrl, site.linkedinUrl, site.xUrl].filter(Boolean),
 };
 
 export const viewport: Viewport = {
@@ -73,6 +110,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
+        <JsonLd data={webSiteJsonLd} />
+        <JsonLd data={authorJsonLd} />
         <Header />
         <main id="main" className="min-h-[60vh]">
           {children}

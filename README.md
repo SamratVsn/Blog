@@ -23,7 +23,8 @@ A light editorial/brutalist system, not a SaaS template:
 ## Stack
 
 - **Next.js 16** (App Router) + **React 19** + **TypeScript** — static
-  prerendering, per-post metadata, sitemap, RSS, OG images
+  prerendering, per-post metadata, JSON-LD structured data, sitemap, RSS,
+  OG images
 - **Tailwind CSS v4** (CSS-first `@theme` tokens)
 - **File-based Markdown content** (`.md` / `.mdx` + frontmatter, parsed with
   `gray-matter`)

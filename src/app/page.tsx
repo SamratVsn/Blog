@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { BentoCard } from "@/components/BentoCard";
 import { Eyebrow } from "@/components/Eyebrow";
+import { JsonLd } from "@/components/JsonLd";
 import { formatDisplayDate, getAllMeta, getCategories } from "@/lib/articles";
 import { site } from "@/lib/site";
 
@@ -30,8 +31,30 @@ export default function HomePage() {
   const [featured, second, third, ...rest] = articles;
   void rest;
 
+  const blogJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": `${site.url}/#blog`,
+    name: site.handle,
+    description: site.description,
+    url: site.url,
+    inLanguage: "en",
+    author: { "@type": "Person", "@id": `${site.url}/#person`, name: site.name },
+    blogPost: articles.map((a) => ({
+      "@type": "BlogPosting",
+      headline: a.title,
+      description: a.description,
+      datePublished: new Date(a.date).toISOString(),
+      ...(a.updated ? { dateModified: new Date(a.updated).toISOString() } : {}),
+      url: `${site.url}/blog/${a.slug}`,
+      ...(a.image ? { image: a.image } : {}),
+      author: { "@type": "Person", "@id": `${site.url}/#person`, name: site.name },
+    })),
+  };
+
   return (
     <div className="bg-paper p-6 md:p-12">
+      <JsonLd data={blogJsonLd} />
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 min-[640px]:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[minmax(240px,auto)]">
         {/* Branding / bio */}
         <BentoCard dark className="relative col-span-full flex min-h-[480px] flex-col justify-between overflow-hidden p-8 min-[640px]:col-span-2 lg:row-span-2">

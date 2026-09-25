@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CodeEnhancer } from "@/components/CodeEnhancer";
+import { JsonLd } from "@/components/JsonLd";
 import { ReadingProgress } from "@/components/ReadingProgress";
 import { formatDisplayDate, getAllMeta, getArticle, getNeighbors } from "@/lib/articles";
 import { site } from "@/lib/site";
@@ -21,20 +22,26 @@ export async function generateMetadata({
   const article = await getArticle(slug);
   if (!article) return {};
   const url = `/blog/${article.slug}`;
-  const canonical = article.canonicalUrl ?? url;
+  const absoluteUrl = `${site.url}${url}`;
+  const canonical = article.canonicalUrl ?? absoluteUrl;
+  const publishedTime = new Date(article.date).toISOString();
+  const modifiedTime = article.updated ? new Date(article.updated).toISOString() : undefined;
   return {
     title: article.title,
     description: article.description,
     keywords: article.tags,
     authors: [{ name: site.name, url: site.url }],
+    category: article.category,
     alternates: { canonical },
     openGraph: {
       type: "article",
       title: article.title,
       description: article.description,
       url,
-      publishedTime: new Date(article.date).toISOString(),
-      ...(article.updated ? { modifiedTime: new Date(article.updated).toISOString() } : {}),
+      siteName: site.handle,
+      publishedTime,
+      ...(modifiedTime ? { modifiedTime } : {}),
+      ...(article.category ? { section: article.category } : {}),
       authors: [site.name],
       tags: article.tags,
     },
@@ -42,6 +49,8 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: article.title,
       description: article.description,
+      creator: site.handle,
+      site: site.handle,
     },
   };
 }
@@ -54,6 +63,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const { older } = getNeighbors(slug);
   const next = older ?? null;
   const url = `/blog/${article.slug}`;
+  const absoluteUrl = `${site.url}${url}`;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -62,15 +72,32 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     description: article.description,
     datePublished: new Date(article.date).toISOString(),
     ...(article.updated ? { dateModified: new Date(article.updated).toISOString() } : {}),
-    author: { "@type": "Person", name: site.name, url: site.url },
-    mainEntityOfPage: { "@type": "WebPage", "@id": `${site.url}${url}` },
+    author: { "@type": "Person", "@id": `${site.url}/#person`, name: site.name, url: site.url },
+    publisher: { "@type": "Person", "@id": `${site.url}/#person`, name: site.name, url: site.url },
+    mainEntityOfPage: { "@type": "WebPage", "@id": absoluteUrl },
+    ...(article.image ? { image: article.image } : {}),
+    ...(article.category ? { articleSection: article.category } : {}),
     keywords: article.tags.join(", "),
     wordCount: article.words,
+    inLanguage: "en",
+    isPartOf: { "@type": "WebSite", "@id": `${site.url}/#website`, url: site.url, name: site.handle },
+    copyrightYear: new Date(article.date).getFullYear(),
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+      { "@type": "ListItem", position: 2, name: "Essays", item: `${site.url}/essays` },
+      { "@type": "ListItem", position: 3, name: article.title, item: absoluteUrl },
+    ],
   };
 
   return (
     <div className="mx-auto w-full max-w-7xl p-8 md:p-12">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={jsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       <ReadingProgress />
 
       <article className="mx-auto max-w-4xl">
